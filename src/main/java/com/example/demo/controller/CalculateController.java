@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 @RestController
@@ -37,5 +38,10 @@ public class CalculateController {
     @GetMapping("/divide")
     public int divideValues(@RequestBody CalculateRequest request) {
         return calculatorService.divide(request.getA(), request.getB());
+    }
+
+    @GetMapping
+    public List<CalculateEntity> getCal(){
+        return calculatorService.calculations();
     }
 }
