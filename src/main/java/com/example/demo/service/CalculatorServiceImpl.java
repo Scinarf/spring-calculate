@@ -10,7 +10,9 @@ import java.util.List;
 @Service
 public class CalculatorServiceImpl implements CalculatorService{
 
-    private CalculateRepository calculateRepository
+    private CalculateRepository calculateRepository;
+
+    public CalculatorServiceImpl(){}
 
     public CalculatorServiceImpl(CalculateRepository calculateRepository) {
         this.calculateRepository = calculateRepository;
@@ -61,6 +63,7 @@ public class CalculatorServiceImpl implements CalculatorService{
     }
 
     private void answer(CalculateEntity a){
+
         calculateRepository.save(a);
     }
 
