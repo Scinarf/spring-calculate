@@ -40,8 +40,8 @@ public class CalculateController {
         return calculatorService.divide(request.getA(), request.getB());
     }
 
-    @GetMapping
-    public List<CalculateEntity> getCal(){
+    @GetMapping("/history")
+    public List<CalculateEntity> getAllAnswers(){
         return calculatorService.calculations();
     }
 }
