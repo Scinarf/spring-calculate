@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.CalculateRequest;
 import com.example.demo.entity.CalculateEntity;
 import com.example.demo.enums.CalculateActions;
 import com.example.demo.repository.CalculateRepository;
@@ -9,14 +10,16 @@ import java.util.List;
 
 public interface CalculatorService {
 
-         int add(int a , int b);
+    CalculateEntity addValues(CalculateRequest cal);
 
-         int minus(int a , int b);
+    CalculateEntity minusValues(CalculateRequest cal);
 
-         int multiply(int a , int b);
+    CalculateEntity multiplyValues(CalculateRequest cal);
 
-         int divide(int a , int b);
+    CalculateEntity divideValues(CalculateRequest cal);
 
-         List<CalculateEntity> calculations();
+    List<CalculateEntity> calculations();
+
+    CalculateEntity findById(Long id);
 
 }

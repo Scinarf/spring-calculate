@@ -1,8 +1,10 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.CalculateRequest;
 import com.example.demo.entity.CalculateEntity;
 import com.example.demo.enums.CalculateActions;
 import com.example.demo.repository.CalculateRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,60 +16,58 @@ public class CalculatorServiceImpl implements CalculatorService{
 
     public CalculatorServiceImpl(){}
 
+    @Autowired
     public CalculatorServiceImpl(CalculateRepository calculateRepository) {
         this.calculateRepository = calculateRepository;
     }
 
-    public int add(int a , int b){
-        CalculateEntity c = CalculateEntity.builder()
-                .a(a)
-                .b(b)
-                .result((a+b))
+    public CalculateEntity addValues (CalculateRequest cal){
+        CalculateEntity call = CalculateEntity.builder()
+                .a(cal.getA())
+                .b(cal.getB())
+                .result((cal.getA()+cal.getB()))
                 .action(String.valueOf(CalculateActions.Addition))
                 .build();
-        answer(c);
-        return (a+b);
+        return calculateRepository.save(call);
     }
 
-    public int minus(int a , int b){
-        CalculateEntity c = CalculateEntity.builder()
-                .a(a)
-                .b(b)
-                .result((a+b))
+    public CalculateEntity minusValues (CalculateRequest cal){
+        CalculateEntity call = CalculateEntity.builder()
+                .a(cal.getA())
+                .b(cal.getB())
+                .result((cal.getA()-cal.getB()))
                 .action(String.valueOf(CalculateActions.Subtraction))
                 .build();
-        answer(c);
-        return (a-b);
+        return calculateRepository.save(call);
     }
 
-    public int multiply(int a , int b){
-        CalculateEntity c = CalculateEntity.builder()
-                .a(a)
-                .b(b)
-                .result((a+b))
+    public CalculateEntity multiplyValues (CalculateRequest cal){
+        CalculateEntity call = CalculateEntity.builder()
+                .a(cal.getA())
+                .b(cal.getB())
+                .result((cal.getA()*cal.getB()))
                 .action(String.valueOf(CalculateActions.Multiplication))
                 .build();
-        answer(c);
-        return (a*b);
+        return calculateRepository.save(call);
     }
 
-    public int divide(int a , int b){
-        CalculateEntity c = CalculateEntity.builder()
-                .a(a)
-                .b(b)
-                .result((a+b))
+    public CalculateEntity divideValues (CalculateRequest cal){
+        CalculateEntity call = CalculateEntity.builder()
+                .a(cal.getA())
+                .b(cal.getB())
+                .result((cal.getA()/cal.getB()))
                 .action(String.valueOf(CalculateActions.Division))
                 .build();
-        answer(c);
-        return (a/b);
+        return calculateRepository.save(call);
     }
 
-    private void answer(CalculateEntity a){
-
-        calculateRepository.save(a);
-    }
 
     public List<CalculateEntity> calculations(){
+
         return calculateRepository.findAll();
+    }
+
+    public CalculateEntity findById(Long id){
+        return  calculateRepository.findById(id).get();
     }
 }

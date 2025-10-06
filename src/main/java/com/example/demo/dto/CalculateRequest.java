@@ -10,4 +10,6 @@ import lombok.*;
 public class CalculateRequest {
     private int a;
     private int b;
+    private String action;
+    private int result;
 }

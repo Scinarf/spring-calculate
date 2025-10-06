@@ -17,27 +17,33 @@ public class CalculateController {
 
     @Autowired
     public CalculateController(CalculatorServiceImpl calculatorService) {
+
         this.calculatorService = calculatorService;
     }
 
-    @GetMapping("/add")
-    public int addValues(@RequestBody CalculateRequest request) {
-        return calculatorService.add(request.getA(), request.getB());
+    @PostMapping("/add")
+    public void cal (@RequestBody CalculateRequest request){
+        calculatorService.addValues(request);
     }
 
-    @GetMapping("/minus")
-    public int subtractValues(@RequestBody CalculateRequest request) {
-        return calculatorService.minus(request.getA(), request.getB());
+    @PostMapping("/minus")
+    public void subtracting (@RequestBody CalculateRequest request){
+        calculatorService.minusValues(request);
     }
 
-    @GetMapping("/multiply")
-    public int multiplyValues(@RequestBody CalculateRequest request) {
-        return calculatorService.multiply(request.getA(), request.getB());
+    @PostMapping("/multipply")
+    public void multiplication (@RequestBody CalculateRequest request){
+        calculatorService.multiplyValues(request);
     }
 
-    @GetMapping("/divide")
-    public int divideValues(@RequestBody CalculateRequest request) {
-        return calculatorService.divide(request.getA(), request.getB());
+    @PostMapping("/divide")
+    public void division (@RequestBody CalculateRequest request){
+        calculatorService.divideValues(request);
+    }
+
+    @GetMapping("/{id}")
+    public CalculateEntity findById(@PathVariable("id") Long id){
+        return calculatorService.findById(id);
     }
 
     @GetMapping("/history")
