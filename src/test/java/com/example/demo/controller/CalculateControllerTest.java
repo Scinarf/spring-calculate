@@ -32,7 +32,7 @@ class CalculateControllerTest {
     @Test
     void addValues() throws Exception{
         CalculateEntity user = new CalculateEntity(1L, 5,10, String.valueOf(CalculateActions.Addition),15);
-        when(calculatorService.add(5,10)).thenReturn(15);
+        //when(calculatorService.add(5,10)).thenReturn(15);
 
 //        mockMvc.perform(get("/api/calculate/add"))
 //                .andExpect(jsonPath("$.a").value(5))
